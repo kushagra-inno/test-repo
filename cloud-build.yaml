@@ -1,6 +1,6 @@
 steps:
-  - name: gcr.io/cloud-builders/git'
-    args: ['clone','https://source.developers.google.com/p/goldengate-1/r/github_burberryprogrammer_test-repo']
+  #  name: gcr.io/cloud-builders/git'
+  #  args: ['clone','https://source.developers.google.com/p/goldengate-1/r/github_burberryprogrammer_test-repo']-
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/goldengate-1/express-app", "."]
   - name: "gcr.io/cloud-builders/docker"
