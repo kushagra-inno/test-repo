@@ -19,5 +19,3 @@ spec:
         image: gcr.io/goldengate-1/express-app
         ports:
         - containerPort: 3000
-
-
