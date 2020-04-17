@@ -7,5 +7,5 @@ COPY . /app
 # RUN apt-get update
 # RUN apt-get install curl -y
 RUN curl -o image.jpg https://storage.googleapis.com/test-express-app/image.jpg
-RUN mv image.jpg /app/public/images
+RUN mv image.jpg ./public/images
 CMD ["npm","start"]
