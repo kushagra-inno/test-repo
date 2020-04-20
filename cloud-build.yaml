@@ -10,5 +10,5 @@ steps:
     - run
     - --filename=express-deployment.yaml
     - --image=gcr.io/goldengate-1/express-app
-    - --location=asia-south1-a
+    - --location=asia-south1-b
     - --cluster=cluster-1

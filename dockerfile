@@ -4,8 +4,5 @@ WORKDIR /app
 COPY package.json /app/package.json
 RUN npm install
 COPY . /app
-# RUN apt-get update
-# RUN apt-get install curl -y
-RUN curl -o image.jpg https://storage.googleapis.com/test-express-app/image.jpg
-RUN mv image.jpg ./public/images
+RUN curl -o public/images/image.jpeg https://storage.googleapis.com/test-express-app/image.jpeg
 CMD ["npm","start"]
