@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: react
-        image: gcr.io/goldengate-1/express-app
+        image: gcr.io/goldengate-1/test-jekins
         ports:
         - containerPort: 3000
