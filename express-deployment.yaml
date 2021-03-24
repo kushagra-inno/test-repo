@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: react
-        image: gcr.io/goldengate-1/test-jenkins:latest
+        image: gcr.io/goldengate-1/test-jenkins:$BUILD_NUMBER
         ports:
         - containerPort: 3000
