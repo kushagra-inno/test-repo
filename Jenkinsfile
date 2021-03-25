@@ -1,4 +1,5 @@
-pipeline {
+pipeline
+ {
     agent any
      environment {
         PROJECT_ID = 'goldengate-1'
@@ -29,7 +30,7 @@ pipeline {
                 projectId: env.PROJECT_ID,
                 clusterName: env.CLUSTER_NAME,
                 location: env.LOCATION,
-                namespace: env.NAMESPACE,
+                namespace: 'dev',
                 manifestPattern: 'express-deployment.yaml',
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
