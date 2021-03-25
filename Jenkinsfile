@@ -5,6 +5,7 @@ pipeline {
         CLUSTER_NAME = 'cd-jenkins'
         LOCATION = 'asia-south1-b'
         CREDENTIALS_ID = 'goldengate-1'
+        NAMESPACE = 'default'
     }
     stages {
         stage('modify yaml defination') {
@@ -38,6 +39,7 @@ pipeline {
                 projectId: env.PROJECT_ID,
                 clusterName: env.CLUSTER_NAME,
                 location: env.LOCATION,
+                namespace: env.NAMESPACE,
                 manifestPattern: 'express-deployment.yaml',
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
