@@ -34,6 +34,7 @@ pipeline {
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
             }
+        }
         stage('Deploy for production') {
             when {
                 branch 'master'  
