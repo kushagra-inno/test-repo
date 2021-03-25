@@ -8,7 +8,7 @@ pipeline {
         }
         stage('docker build and upload') {
             steps {
-                 sh 'docker build -t gcr.io/goldengate-1/test-jenkins:${BUILD_NUMBER}'
+                 sh 'docker build -t gcr.io/goldengate-1/test-jenkins:${BUILD_NUMBER} .'
                  sh 'docker push gcr.io/goldengate-1/test-jenkins:${BUILD_NUMBER}'
             }
         }
