@@ -5,7 +5,6 @@ pipeline {
         CLUSTER_NAME = 'cd-jenkins'
         LOCATION = 'asia-south1-b'
         CREDENTIALS_ID = 'goldengate-1'
-        NAMESPACE = 'default'
     }
     stages {
         stage('modify yaml defination') {
@@ -19,20 +18,11 @@ pipeline {
                  sh 'docker push gcr.io/goldengate-1/test-jenkins:${BUILD_NUMBER}'
             }
         }
-        // stage('Deliver for development') {
-        //     when {
-        //         branch 'development' 
-        //     }
-        //     steps {
-        //         sh './jenkins/scripts/deliver-for-development.sh'
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         sh './jenkins/scripts/kill.sh'
-        //     }
-        // }
-        stage('Deploy for production') {
-            // when {
-            //     branch 'production'  
-            // }
+    
+        stage('Deploy for devlopment') {
+            when {
+                branch 'dev'  
+            }
             steps{
                 step([
                 $class: 'KubernetesEngineBuilder',
@@ -40,6 +30,21 @@ pipeline {
                 clusterName: env.CLUSTER_NAME,
                 location: env.LOCATION,
                 namespace: env.NAMESPACE,
+                manifestPattern: 'express-deployment.yaml',
+                credentialsId: env.CREDENTIALS_ID,
+                verifyDeployments: true])
+            }
+        stage('Deploy for production') {
+            when {
+                branch 'master'  
+            }
+            steps{
+                step([
+                $class: 'KubernetesEngineBuilder',
+                projectId: env.PROJECT_ID,
+                clusterName: env.CLUSTER_NAME,
+                location: env.LOCATION,
+                namespace: 'default',
                 manifestPattern: 'express-deployment.yaml',
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
