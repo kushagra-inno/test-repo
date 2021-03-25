@@ -3,7 +3,7 @@ pipeline {
      environment {
         PROJECT_ID = 'goldengate-1'
         CLUSTER_NAME = 'cd-jenkins'
-        LOCATION = 'asia-south1-b '
+        LOCATION = 'asia-south1 '
         CREDENTIALS_ID = 'goldengate-1'
     }
     stages {
