@@ -1,5 +1,11 @@
 pipeline {
     agent any
+     environment {
+        PROJECT_ID = 'goldengate-1'
+        CLUSTER_NAME = 'cd-jenkins'
+        LOCATION = 'asia-south1-b '
+        CREDENTIALS_ID = 'goldengate-1'
+    }
     stages {
         stage('modify yaml defination') {
             steps {
@@ -22,15 +28,20 @@ pipeline {
         //         sh './jenkins/scripts/kill.sh'
         //     }
         // }
-        // stage('Deploy for production') {
-        //     // when {
-        //     //     branch 'production'  
-        //     // }
-        //     steps {
-        //         sh './jenkins/scripts/deploy-for-production.sh'
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         sh './jenkins/scripts/kill.sh'
-        //     }
-        // }
+        stage('Deploy for production') {
+            // when {
+            //     branch 'production'  
+            // }
+            steps{
+                step([
+                $class: 'KubernetesEngineBuilder',
+                projectId: env.PROJECT_ID,
+                clusterName: env.CLUSTER_NAME,
+                location: env.LOCATION,
+                manifestPattern: 'express-deployment.yaml',
+                credentialsId: env.CREDENTIALS_ID,
+                verifyDeployments: true])
+            }
+        }
     }
 }
